@@ -26,8 +26,8 @@ spec:
         app: auth-service
     spec:
       containers:
-        - name: pratikfuse/auth:1.0
-          image: auth
+        - name: auth
+          image: pratikfuse/auth:1.0
           imagePullPolicy: IfNotPresent
           env:
             - name: SECRET
