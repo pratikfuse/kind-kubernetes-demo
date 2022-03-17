@@ -26,7 +26,8 @@ spec:
     spec:
       containers:
         - name: web-app
-          image: web
+          image: pratikfuse/web:1.0
+          imagePullPolicy: IfNotPresent
           resources:
             limits:
               memory: "128Mi"

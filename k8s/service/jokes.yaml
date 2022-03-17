@@ -30,8 +30,8 @@ spec:
     spec:
       containers:
         - name: joke
-          image: jokes
-          imagePullPolicy: Never
+          image: pratikfuse/jokes:1.0
+          imagePullPolicy: IfNotPresent
           env:
             - name: SECRET
               value: super-secret-key
