@@ -1,0 +1,20 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: jwt-consumer
+  annotations:
+    kubernetes.io/ingress.class: kong
+username: jwt-user
+credentials:
+  - app-jwt-secret
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: jwt-plugin
+  labels:
+    global: "true"
+config:
+  secret_is_base64: false
+  run_on_preflight: false
+plugin: jwt

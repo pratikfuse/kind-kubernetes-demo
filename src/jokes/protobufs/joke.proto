@@ -1,0 +1,30 @@
+syntax="proto3";
+
+package proto;
+
+import "annotations.proto";
+// import "empty.proto";
+
+option go_package = "./;proto";
+
+message Empty {}
+
+message DadJoke {
+	string opener = 1;
+	string punchline = 2;
+}
+
+message RandomResponse {
+
+    DadJoke joke = 1;
+}
+
+
+service DadJokesServer {
+    rpc Random(Empty) returns (RandomResponse) {
+        option (google.api.http) = {
+            get: "/joke/random"
+        };
+    }
+
+}

@@ -1,0 +1,59 @@
+# ###############################################################
+# KONG INGRESS RULE                                            #
+# ###############################################################
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-kong
+  annotations:
+    kubernetes.io/ingress.class: kong
+spec:
+  rules:
+    - host: web.dadjoke.local
+      http:
+        paths:
+          - backend:
+              serviceName: web-svc
+              servicePort: nginx-port
+---
+# #########################################################################
+# # GRPC INGRESS RULE                                                     #
+# #########################################################################
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: kong-grpc-ingress
+  annotations:
+    kubernetes.io/ingress.class: kong
+    konghq.com/plugins: grpc-gateway-plugin,cors-plugin,jwt-plugin
+spec:
+  rules:
+    - host: api.dadjoke.local
+      http:
+        paths:
+          - path: /joke
+            pathType: Prefix
+            backend:
+              serviceName: joke-svc
+              servicePort: 9000
+---
+# #########################################################################
+# #                                                                       #
+# #########################################################################
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: kong-ingress
+  annotations:
+    kubernetes.io/ingress.class: kong
+    konghq.com/plugins: cors-plugin
+spec:
+  rules:
+    - host: api.dadjoke.local
+      http:
+        paths:
+          - path: /auth/token
+            pathType: Exact
+            backend:
+              serviceName: auth-svc
+              servicePort: 9000

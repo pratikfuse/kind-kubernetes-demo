@@ -1,0 +1,25 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: cors-plugin
+  labels:
+    global: "true"
+config:
+  credentials: false
+  exposed_headers: null
+  headers:
+  - Content-Type, Accept, Authorization
+  max_age: 3666
+  methods:
+  - GET
+  - POST
+  origins:
+  - http://web.dadjoke.local
+  - http://localhost:4200
+  preflight_continue: false
+enabled: true
+run_on: first
+protocols:
+- http
+- https
+plugin: cors

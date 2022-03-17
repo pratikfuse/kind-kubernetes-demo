@@ -1,0 +1,30 @@
+apiVersion: skaffold/v2beta26
+kind: Config
+metadata:
+  name: kong-kubernetes-demo
+build:
+  artifacts:
+    - image: auth
+      context: src/auth
+      docker:
+        dockerfile: Dockerfile
+    - image: jokes
+      context: src/jokes
+      docker:
+        dockerfile: Dockerfile
+    - image: web
+      context: src/web
+      docker:
+        dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+      - k8s/loadbalancer.yaml
+      - k8s/kong/kong.deployment.yaml
+      - k8s/kong/ingress/ingress.yaml
+      - k8s/kong/plugins/cors.yaml
+      - k8s/kong/plugins/grpc-gateway.yaml
+      - k8s/kong/plugins/jwt.yaml
+      - k8s/service/auth.yaml
+      - k8s/service/jokes.yaml
+      - k8s/service/web.yaml

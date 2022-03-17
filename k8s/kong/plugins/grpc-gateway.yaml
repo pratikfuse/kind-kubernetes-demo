@@ -1,0 +1,10 @@
+# # Persistent volume for pg
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: grpc-gateway-plugin
+  labels:
+    global: "true"
+config:
+  proto: /home/kong/protobufs/joke.proto
+plugin: grpc-gateway
