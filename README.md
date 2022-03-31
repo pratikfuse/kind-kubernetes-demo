@@ -1,6 +1,6 @@
 # Kong Gateway, gRPC on Kubernetes
 
-This repository contains the code for the [blog](https://google.com) which shows how to Kong api gateway with gRPC in a Kubernetes Cluster.
+This repository contains the code for the [blog](https://medium.com/@pratik.manandhar99/implementing-kong-api-gateway-with-grpc-on-a-kubernetes-cluster-240f6132219c) which shows how to Kong api gateway with gRPC in a Kubernetes Cluster.
 
 ### Prequisites
 
